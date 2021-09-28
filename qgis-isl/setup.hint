@@ -1,0 +1,7 @@
+sdesc: "QGIS LTR configuration package"
+ldesc: "QGIS LTR ISL configuration package"
+maintainer: NGO
+category: Desktop
+requires: qgis-ltr
+version: 0.1-1
+install: x86_64/release/qgis/qgis-isl/qgis-isl-0.1-1.tar.bz2

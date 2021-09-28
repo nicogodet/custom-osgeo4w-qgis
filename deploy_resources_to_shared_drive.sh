@@ -11,16 +11,16 @@ echo "** Deployes some resources to a shared drive **
 S_DIR="/mnt/s/QGIS/custom"
 
 # Global settings et contraintes 
-echo "copies global settings"
-cp qgis-custom/apps/qgis-custom/qgis_global_settings.ini $S_DIR/QGIS/
+echo "Copies global settings"
+cp qgis-isl/apps/qgis-isl/qgis_global_settings.ini $S_DIR/QGIS/
 
 echo "Copies qgis_constrained_settings.yml"
-cp qgis-custom/apps/qgis-custom/qgis_constrained_settings.yml $S_DIR/QGIS/
+cp qgis-isl/apps/qgis-isl/qgis_constrained_settings.yml $S_DIR/QGIS/
 
 
 # Startup project 
 echo "Copies startup project"
-cp qgis-custom/apps/qgis-custom/startup_project.qgs $S_DIR/
+cp qgis-isl/apps/qgis-isl/startup_project.qgs $S_DIR/
 
 
 echo -e "--------"

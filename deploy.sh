@@ -10,7 +10,7 @@ set -e
 echo "** Deploying osgeo4W custom package **
 "
 
-cd qgis-custom
+cd qgis-isl
 
 SETUP_TEXT=$(cat setup.hint)
 
@@ -20,7 +20,7 @@ echo "-Target package directory :
 $PACKAGE_DIR
 "
 
-echo "-PAckage metadata : 
+echo "-Package metadata : 
 ------------
 $SETUP_TEXT
 ------------"
@@ -29,7 +29,7 @@ $SETUP_TEXT
 if [ ! -d "$PACKAGE_DIR" ] 
 then
    echo "Target directory doesn't exists"
-#    e  xit 2 
+   exit 1
 fi
 
 
@@ -37,27 +37,27 @@ VERSION=$(grep -i version setup.hint | awk '{printf $2}')
 
 echo "package version found:  $VERSION"
 
-mkdir -p "$PACKAGE_DIR/x86_64/release/qgis/qgis-custom/"
+mkdir -p "$PACKAGE_DIR/x86_64/release/qgis/qgis-isl/"
 
 cd - 
 
-cp -p qgis-custom-$VERSION.tar.bz2 $PACKAGE_DIR/x86_64/release/qgis/qgis-custom/
+cp -p qgis-isl-$VERSION.tar.bz2 $PACKAGE_DIR/x86_64/release/qgis/qgis-isl/
 
 # md5 and size  
-MD5=$(md5sum qgis-custom-$VERSION.tar.bz2 | awk -F'[ ]'  '{print $1}')
-size=$(stat -c "%s" qgis-custom-$VERSION.tar.bz2)
+MD5=$(md5sum qgis-isl-$VERSION.tar.bz2 | awk -F'[ ]'  '{print $1}')
+size=$(stat -c "%s" qgis-isl-$VERSION.tar.bz2)
 
 # adds metadata into setup.ini, from setup.hint template
 
 echo -e "
-- Modification du setup.ini cible" 
+- Modification of setup.ini"
 
 # deletes previous entry
-sed -i  '/@ qgis-custom/,+8d;' $PACKAGE_DIR/x86_64/setup.ini
+sed -i  '/@ qgis-isl/,+8d;' $PACKAGE_DIR/x86_64/setup.ini
 
 # append to the end of the file
 
-echo "@ qgis-custom
+echo "@ qgis-isl
 $SETUP_TEXT $size $MD5 
 " >>  $PACKAGE_DIR/x86_64/setup.ini 
 
