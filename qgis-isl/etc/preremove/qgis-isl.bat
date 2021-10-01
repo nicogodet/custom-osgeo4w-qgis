@@ -6,9 +6,10 @@ set O4W_ROOT=%OSGEO4W_ROOT%
 set OSGEO4W_ROOT=%OSGEO4W_ROOT:\=\\%
 
 @REM  deletes .bat et and custom shortcuts
-
+set APPNAME=QGIS ISL (LTR)
 del "%OSGEO4W_ROOT%\bin\qgis-ltr-isl.bat"
-del "%OSGEO4W_STARTMENU%\QGIS ISL (LTR).lnk"
+del "%OSGEO4W_STARTMENU%\%APPNAME%.lnk"
+del "%OSGEO4W_DESKTOP%\%APPNAME%.lnk"
 
 @REM del "%OSGEO4W_ROOT%\bin\qgis-ltr-custom-bin.vars"
 @REM del "%OSGEO4W_ROOT%\bin\qgis-ltr-custom-bin.env"
@@ -17,7 +18,7 @@ del "%OSGEO4W_STARTMENU%\QGIS ISL (LTR).lnk"
 del /s /q "%OSGEO4W_ROOT%\apps\qgis-isl\python\*.pyc"
 
 @REM deletes custom shortcut backup (may remain)
-del "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\QGIS ISL (LTR).lnk"
+del "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\%APPNAME%.lnk"
 
 @REM delete old reg key association
 
@@ -31,7 +32,6 @@ move /Y "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links\*.lnk" "%O
 
 
 @REM  replays file associations for qgs / qgz with QGIS native
-
 
 set OSGEO4W_ROOT=%O4W_ROOT%
 textreplace -std -t "%OSGEO4W_ROOT%\apps\qgis-ltr\bin\qgis.reg"
