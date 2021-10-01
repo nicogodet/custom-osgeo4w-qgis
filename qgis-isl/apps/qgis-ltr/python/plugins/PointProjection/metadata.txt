@@ -1,0 +1,53 @@
+# This file contains metadata for your plugin. Since 
+# version 2.0 of QGIS this is the proper way to supply 
+# information about a plugin. The old method of 
+# embedding metadata in __init__.py will 
+# is no longer supported since version 2.0.
+
+# This file should be included when you package your plugin.
+# Mandatory items:
+
+[general]
+name=Point projection
+about=Projette des points présent dans un buffer orthogonalement sur une polyligne en interpolant suivant un pas d'espace (si défini).
+description=Projette des points sur une ligne
+version=1.0.8
+qgisMinimumVersion=2.99
+qgisMaximumVersion=3.99
+
+changelog=
+	1.0.8 2021-05-03
+	  * Ajout de la méthode de création d'un champ PK auto dans la couche source.
+	1.0.6 2021-01-31
+	  * Possibilité de supprimer ou non les points doublon
+	  * Fix problème en cas de projection différente de la couche de point (les points créés seront dans le référentiel du projet).
+	1.0.5 2021-01-22
+	  * Corrige la mise à jour des couches de points à l'ajout d'une couche dans le projet
+	1.0.4 2020-11-02
+	  * Quelques fix...
+    1.0.3 2020-08-14
+	  * 25D wkbTypes fix
+    1.0.2 2020-08-05
+	  * Disconnect visibilityChanged on closingEvent
+    1.0.1 2020-08-03
+	  * Fix Z/M geometries comput_point
+    1.0 2020-08-01
+      * Working with Qgis3
+      * List visible point layers only
+      * Memories ComboBox choices
+      * Pre-fill field ComboBox with "Z" or "Alti" field if exists
+    0.3 
+      * Initial version
+
+homepage=https://github.com/nicogodet/PointProjection
+tracker=https://github.com/nicogodet/PointProjection
+repository=https://github.com/nicogodet/PointProjection
+tags=vector, projection
+icon=icons/icon.png
+
+experimental=False
+deprecated=False
+
+author=Patrice Vercher (Artelia), Nicolas Godet (ISL)
+email=patrice.verchere@arteliagroup.com, godet@isl.fr
+

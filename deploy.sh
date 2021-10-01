@@ -14,7 +14,7 @@ cd qgis-isl
 
 SETUP_TEXT=$(cat setup.hint)
 
-PACKAGE_DIR="/x/OSGEO4W_DEPLOY_TEST/PAQUETS/http%3a%2f%2fwww.norbit.de%2fosgeo4w%2f"
+PACKAGE_DIR="/mnt/l/Qgis/DEPLOY/http%3a%2f%2fwww.norbit.de%2fosgeo4w%2fv2%2f"
 
 echo "-Target package directory : 
 $PACKAGE_DIR

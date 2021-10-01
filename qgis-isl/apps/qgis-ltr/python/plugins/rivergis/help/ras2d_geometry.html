@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HEC-RAS 2D Geometry &mdash; RiverGIS 3.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="about.html"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="RiverGIS 3.0 documentation" href="index.html"/>
+        <link rel="next" title="The Plugin Settings" href="settings.html"/>
+        <link rel="prev" title="Step by step: HEC-RAS 1D Geometry" href="ras1d_geometry.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> RiverGIS
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="q2a.html">Questions and Answers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ras1d_geometry.html">Step by step: HEC-RAS 1D Geometry</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HEC-RAS 2D Geometry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-2d-geometry-data">Importing 2D geometry data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-1d-base-model">Creating 1D base model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-2d-mesh">Creating 2D mesh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-2d-computational-points">Create 2D Computational Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preview-2d-mesh">Preview 2D Mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-2d-points-to-hec-ras-geometry">Save 2D Points to HEC-RAS Geometry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">The Plugin Settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About RiverGIS</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RiverGIS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>HEC-RAS 2D Geometry</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ras2d_geometry.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hec-ras-2d-geometry">
+<span id="hecras2d"></span><h1>HEC-RAS 2D Geometry<a class="headerlink" href="#hec-ras-2d-geometry" title="Permalink to this headline">¶</a></h1>
+<p>This manual presents creating HEC-RAS 2D Flow Areas in RiverGIS plugin. For 1D geometry and how to start working with RiverGIS, refer to <a class="reference internal" href="ras1d_geometry.html#stepbystep1d"><span class="std std-ref">previous section</span></a>.</p>
+<p>2D flow functionality is introduced in HEC-RAS version 5.0. Users are strongly encouraged to read the <a class="reference external" href="http://rivergis.com/docs/2D_Modeling_with_HEC_RAS_50.pdf">2D Modeling with HEC-RAS 5.0</a>. Also <a class="reference external" href="http://hecrasmodel.blogspot.com/">The RAS Solution Blog</a> is a great source of information about new HEC-RAS releases and 2D modeling.</p>
+<blockquote>
+<div></div></blockquote>
+<p>RiverGIS builds 2D HEC-RAS geometry using following river database tables created by a user:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">FlowAreas2D</span></code> (required) &#8212; a polygon layer representing 2D Flow Areas. It has 2 user defined attributes:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Name</span></code> &#8212; 2D Flow Area name</li>
+<li><code class="docutils literal"><span class="pre">CellSize</span></code> &#8212; a default mesh cell size for a flow area.</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><code class="docutils literal"><span class="pre">BreakLines2D</span></code> (optional) &#8212; a polyline layer for aligning cell faces along the breaklines with 3 user defined attributes:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">CellSizeAlong</span></code> &#8212; default mesh points spacing along a structure</li>
+<li><code class="docutils literal"><span class="pre">CellSizeAcross</span></code> &#8212; default mesh points spacing across a structure</li>
+<li><code class="docutils literal"><span class="pre">RowsAligned</span></code> &#8212; number of mesh rows that should be aligned to a breakline</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><code class="docutils literal"><span class="pre">BreakPoints2D</span></code> (optional) &#8212; a point layer for creating a cell face at exact locations along the breaklines (optional). No attributes required.</li>
+<li><code class="docutils literal"><span class="pre">DTM</span></code> (required) &#8212; a digital terrain raster layers set.</li>
+</ol>
+<div class="section" id="importing-2d-geometry-data">
+<h2>Importing 2D geometry data<a class="headerlink" href="#importing-2d-geometry-data" title="Permalink to this headline">¶</a></h2>
+<p>Users can edit the tables with QGIS geometry editing tools or import geometries and attributes from another data source. Here, we will import spatial data for 2D flow objects from modified <a class="reference external" href="http://rivergis.com/download/baldeagle.zip">Bald Eagle example data</a> &#8212; the same we used for <a class="reference internal" href="ras1d_geometry.html#stepbystep1d"><span class="std std-ref">1D modeling section</span></a>. In addition to 1D geometry objects we will use 2D tab of the import dialog to load 2D flow areas, breaklines and breakpoints:</p>
+<div class="figure align-center">
+<img alt="_images/ras2d_import.png" src="_images/ras2d_import.png" />
+</div>
+<p>All the target tables should be automatically added to the map canvas after the import. If they are not, use the <img alt="loadtables" src="_images/loadRdbTablesIntoQgis.png" /> tool to load all river database tables into QGIS project.</p>
+</div>
+<div class="section" id="creating-1d-base-model">
+<h2>Creating 1D base model<a class="headerlink" href="#creating-1d-base-model" title="Permalink to this headline">¶</a></h2>
+<p>First, <a class="reference internal" href="ras1d_geometry.html#stepbystep1d"><span class="std std-ref">run all the 1D tools</span></a> to build the base model for 2D flow areas.</p>
+<div class="figure align-center">
+<img alt="_images/ras2d_run1d.png" src="_images/ras2d_run1d.png" />
+</div>
+</div>
+<div class="section" id="creating-2d-mesh">
+<h2>Creating 2D mesh<a class="headerlink" href="#creating-2d-mesh" title="Permalink to this headline">¶</a></h2>
+<p>Next, check the user defined attributes of the <code class="docutils literal"><span class="pre">FlowAreas2D</span></code> and <code class="docutils literal"><span class="pre">BreakLines2D</span></code> layers using their attributes table, as shown below.</p>
+<div class="figure align-center">
+<img alt="_images/ras2d_check_attrs.png" src="_images/ras2d_check_attrs.png" />
+</div>
+<div class="section" id="create-2d-computational-points">
+<h3>Create 2D Computational Points<a class="headerlink" href="#create-2d-computational-points" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><img alt="2dpts" src="_images/ras2dareaCreate.png" /></td>
+<td><code class="docutils literal"><span class="pre">RAS</span> <span class="pre">Geometry</span></code> &gt; <code class="docutils literal"><span class="pre">Create</span> <span class="pre">2D</span> <span class="pre">Computational</span> <span class="pre">Points</span></code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div></div></blockquote>
+<p>Creates computational points for each 2D flow area.</p>
+<p>If the mesh has to be aligned to a structure, use breaklines (<code class="docutils literal"><span class="pre">BreakLines2D</span></code>):</p>
+<div class="figure align-center">
+<img alt="_images/ras2d_mesh_brklines.png" src="_images/ras2d_mesh_brklines.png" />
+</div>
+<p>If special locations of cell faces are needed, use breaklines with breakpoints:</p>
+<div class="figure align-center">
+<img alt="_images/ras2d_mesh_brkpts.png" src="_images/ras2d_mesh_brkpts.png" />
+</div>
+<p>The breakpoints are especially useful when modeling groins, as shown below.</p>
+<div class="figure align-center">
+<img alt="_images/ras2d_mesh_brkpts2.jpg" src="_images/ras2d_mesh_brkpts2.jpg" />
+</div>
+</div>
+<div class="section" id="preview-2d-mesh">
+<h3>Preview 2D Mesh<a class="headerlink" href="#preview-2d-mesh" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><img alt="preview_mesh" src="_images/ras2dareaPreview.png" /></td>
+<td><code class="docutils literal"><span class="pre">RAS</span> <span class="pre">Geometry</span></code> &gt; <code class="docutils literal"><span class="pre">Preview</span> <span class="pre">2D</span> <span class="pre">Mesh</span></code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div></div></blockquote>
+<p>Creates a preview of 2D mesh with QGIS Processing algorithm (Voronoi polygons).</p>
+</div>
+<div class="section" id="save-2d-points-to-hec-ras-geometry">
+<h3>Save 2D Points to HEC-RAS Geometry<a class="headerlink" href="#save-2d-points-to-hec-ras-geometry" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><img alt="save_mesh" src="_images/ras2dareaSaveToGeo.png" /></td>
+<td><code class="docutils literal"><span class="pre">RAS</span> <span class="pre">Geometry</span></code> &gt; <code class="docutils literal"><span class="pre">Save</span> <span class="pre">2D</span> <span class="pre">Points</span> <span class="pre">to</span> <span class="pre">HEC-RAS</span> <span class="pre">Geometry</span></code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div></div></blockquote>
+<p>Saves the mesh points to a chosen HEC-RAS Geometry file (*.g**). If the chosen file is an existing geometry, the 2D flow areas will be added to it. If the file doesn&#8217;t exist, a new empty geometry will be created.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There is no documentation for 2D Flow Areas in <em>HEC-RAS GIS Import</em> file format (SDF). Therefore, the mesh points are written to a geometry file. Please, close the geometry file before writing to it.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="settings.html" class="btn btn-neutral float-right" title="The Plugin Settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ras1d_geometry.html" class="btn btn-neutral" title="Step by step: HEC-RAS 1D Geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, RiverGIS.com.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'3.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

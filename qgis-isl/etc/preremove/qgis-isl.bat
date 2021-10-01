@@ -2,6 +2,8 @@
 
 echo "running .bat preremove qgis-isl "
 
+set O4W_ROOT=%OSGEO4W_ROOT%
+set OSGEO4W_ROOT=%OSGEO4W_ROOT:\=\\%
 
 @REM  deletes .bat et and custom shortcuts
 
@@ -31,6 +33,6 @@ move /Y "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links\*.lnk" "%O
 @REM  replays file associations for qgs / qgz with QGIS native
 
 
-set OSGEO4W_ROOT=%OSGEO4W_ROOT:\=\\%
+set OSGEO4W_ROOT=%O4W_ROOT%
 textreplace -std -t "%OSGEO4W_ROOT%\apps\qgis-ltr\bin\qgis.reg"
-nircmd elevate "%WINDIR%\regedit" /s "%OSGEO4W_ROOT%\apps\qgis-ltr\bin\qgis.reg"
+if not exist "%OSGEO4W_ROOT%\apps\qgis\bin\qgis.reg" "%WINDIR%\regedit" /s "%OSGEO4W_ROOT%\apps\qgis-ltr\bin\qgis.reg"

@@ -740,7 +740,7 @@ class MenuFromProject:
                 QgsProject.instance().addMapLayer(theLayer, False)
 
                 # add to group
-                treeNode = group.addLayer(theLayer)
+                treeNode = group.insertLayer(0, theLayer)
                 treeNode.setExpanded(expanded)
                 treeNode.setItemVisibilityChecked(visible)
             else:
@@ -777,11 +777,11 @@ class MenuFromProject:
                 groupName = menu.title().replace("&", "")
                 group = QgsProject.instance().layerTreeRoot().findGroup(groupName)
                 if group is None:
-                    group = QgsProject.instance().layerTreeRoot().addGroup(groupName)
+                    group = QgsProject.instance().layerTreeRoot().insertGroup(0, groupName)
 
             # load all layers
             if fileName is None and layerId is None and self.optionLoadAll:
-                for action in menu.actions():
+                for action in menu.actions()[::-1]:
                     if (
                         action.text() != self.tr("Load all")
                         and action.text() != "Load all"

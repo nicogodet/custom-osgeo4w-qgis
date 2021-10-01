@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RiverGIS</class>
+ <widget class="QMainWindow" name="RiverGIS">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>617</width>
+    <height>438</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>RiverGIS</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../icons/rivergis_big.svg</normaloff>../icons/rivergis_big.svg</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="3">
+       <widget class="QLabel" name="labelCurSchema">
+        <property name="text">
+         <string>Schema:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelCurDatabase">
+        <property name="text">
+         <string>DB Connection:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QComboBox" name="schemasCbo">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="connsCbo">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTextEdit" name="textEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Projection</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QgsProjectionSelectionWidget" name="crsWidget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>400</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>617</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionHelpContents"/>
+    <addaction name="actionWebsite"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menu_Geometry">
+    <property name="title">
+     <string>RAS Geometry</string>
+    </property>
+    <widget class="QMenu" name="menuXS_Cut_Line_Attributes">
+     <property name="title">
+      <string>XS Cut Line Attributes</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/ras1dXs.svg</normaloff>../icons/ras1dXs.svg</iconset>
+     </property>
+     <addaction name="actionRASXSRiverReachNames"/>
+     <addaction name="actionRASXSStationing"/>
+     <addaction name="actionRASXSBankStations"/>
+     <addaction name="actionRASXSDownstreamReachLengths"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASXSElevations"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASXSAll"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASXSUpdateInsertMeasuredPoints"/>
+    </widget>
+    <widget class="QMenu" name="menuStreamCenterlineAttributes">
+     <property name="title">
+      <string>Stream Centerline Attributes</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/ras1dStreamCenterlines.svg</normaloff>../icons/ras1dStreamCenterlines.svg</iconset>
+     </property>
+     <addaction name="actionRASTopology1D"/>
+     <addaction name="actionRASLengthsStations"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASStreamCenterlineAll"/>
+     <addaction name="separator"/>
+     <addaction name="actionCopyStreamCenterlines2Flowpaths"/>
+    </widget>
+    <widget class="QMenu" name="menuBridges_Culverts">
+     <property name="title">
+      <string>Bridges/Culverts</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/ras1dBridges.svg</normaloff>../icons/ras1dBridges.svg</iconset>
+     </property>
+     <addaction name="actionRASBRRiverReachNames"/>
+     <addaction name="actionRASBRStationing"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASBRElevations"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASBRAll"/>
+    </widget>
+    <widget class="QMenu" name="menuInline_Structures">
+     <property name="title">
+      <string>Inline Structures</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/ras1dInlineStruct.svg</normaloff>../icons/ras1dInlineStruct.svg</iconset>
+     </property>
+     <addaction name="actionRASInlRiverReachNames"/>
+     <addaction name="actionRASInlStationing"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASInlElevations"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASInlAll"/>
+    </widget>
+    <widget class="QMenu" name="menuLateral_Structures">
+     <property name="title">
+      <string>Lateral Structures</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/ras1dLateralStruct.svg</normaloff>../icons/ras1dLateralStruct.svg</iconset>
+     </property>
+     <addaction name="actionRASLatRiverReachNames"/>
+     <addaction name="actionRASLatStationing"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASLatElevations"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASLatAll"/>
+    </widget>
+    <widget class="QMenu" name="menuStorage_Areas">
+     <property name="title">
+      <string>Storage Areas</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/ras1dStorageAreas.svg</normaloff>../icons/ras1dStorageAreas.svg</iconset>
+     </property>
+     <addaction name="actionRASSATerrainPointExtraction"/>
+     <addaction name="actionRASSAElevationVolumeData"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASSAAll"/>
+    </widget>
+    <widget class="QMenu" name="menuStorage_Areas_Connections">
+     <property name="title">
+      <string>Storage Area Connections</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../icons/ras1dSAConnections.svg</normaloff>../icons/ras1dSAConnections.svg</iconset>
+     </property>
+     <addaction name="actionRASSacAssignNearestSA"/>
+     <addaction name="actionRASSacElevations"/>
+     <addaction name="separator"/>
+     <addaction name="actionRASSacAll"/>
+    </widget>
+    <addaction name="menuStreamCenterlineAttributes"/>
+    <addaction name="menuXS_Cut_Line_Attributes"/>
+    <addaction name="actionRASHealLanduseGeometries"/>
+    <addaction name="actionRASManningsNValues"/>
+    <addaction name="actionRASLevees"/>
+    <addaction name="actionRASIneffectiveFlowAreas"/>
+    <addaction name="actionRASBlockedObstructions"/>
+    <addaction name="separator"/>
+    <addaction name="menuBridges_Culverts"/>
+    <addaction name="menuInline_Structures"/>
+    <addaction name="menuLateral_Structures"/>
+    <addaction name="menuStorage_Areas"/>
+    <addaction name="menuStorage_Areas_Connections"/>
+    <addaction name="separator"/>
+    <addaction name="actionRASCreateRASGISImport"/>
+    <addaction name="separator"/>
+    <addaction name="actionRASCreate2dAreaPoints"/>
+    <addaction name="actionRASPreview2DMesh"/>
+    <addaction name="actionRASSave2DPointsToHECRASGeometry"/>
+   </widget>
+   <widget class="QMenu" name="menuDB">
+    <property name="title">
+     <string>Database</string>
+    </property>
+    <addaction name="actionRefreshConnections"/>
+    <addaction name="actionCreateNewSchema"/>
+    <addaction name="actionDeleteSchema"/>
+    <addaction name="actionRASCreateRdbTables"/>
+    <addaction name="actionRASImportLayersIntoRdbTables"/>
+    <addaction name="actionRASLoadRdbTablesIntoQGIS"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionOptions"/>
+    <addaction name="actionRestoreDefaultOptions"/>
+   </widget>
+   <addaction name="menuDB"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menu_Geometry"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="dbToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRefreshConnections"/>
+   <addaction name="actionCreateNewSchema"/>
+   <addaction name="actionDeleteSchema"/>
+   <addaction name="actionRASCreateRdbTables"/>
+   <addaction name="actionRASImportLayersIntoRdbTables"/>
+   <addaction name="actionRASLoadRdbTablesIntoQGIS"/>
+  </widget>
+  <widget class="QToolBar" name="settingsToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOptions"/>
+  </widget>
+  <widget class="QToolBar" name="rasGeomToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRASTopology1D"/>
+   <addaction name="actionRASLengthsStations"/>
+   <addaction name="actionRASStreamCenterlineAll"/>
+   <addaction name="actionRASXSRiverReachNames"/>
+   <addaction name="actionRASXSStationing"/>
+   <addaction name="actionRASXSBankStations"/>
+   <addaction name="actionRASXSDownstreamReachLengths"/>
+   <addaction name="actionRASXSElevations"/>
+   <addaction name="actionRASXSAll"/>
+  </widget>
+  <widget class="QToolBar" name="rasOptGeomToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="actionRASManningsNValues"/>
+   <addaction name="actionRASLevees"/>
+   <addaction name="actionRASIneffectiveFlowAreas"/>
+   <addaction name="actionRASBlockedObstructions"/>
+   <addaction name="actionRASXSUpdateInsertMeasuredPoints"/>
+  </widget>
+  <widget class="QToolBar" name="rasStructuresToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRASBRAll"/>
+   <addaction name="actionRASInlAll"/>
+   <addaction name="actionRASLatAll"/>
+   <addaction name="actionRASSAAll"/>
+   <addaction name="actionRASSacAll"/>
+  </widget>
+  <widget class="QToolBar" name="rasSAToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRASSATerrainPointExtraction"/>
+   <addaction name="actionRASSAElevationVolumeData"/>
+  </widget>
+  <widget class="QToolBar" name="ras2dToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRASCreate2dAreaPoints"/>
+   <addaction name="actionRASPreview2DMesh"/>
+   <addaction name="actionRASSave2DPointsToHECRASGeometry"/>
+  </widget>
+  <widget class="QToolBar" name="rasImportExportToolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRASCreateRASGISImport"/>
+  </widget>
+  <action name="actionRASCreate2dAreaPoints">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras2dareaCreate.svg</normaloff>../icons/ras2dareaCreate.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Create 2D Computational Points</string>
+   </property>
+  </action>
+  <action name="actionHelpContents">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/helpContents.svg</normaloff>../icons/helpContents.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Contents</string>
+   </property>
+  </action>
+  <action name="actionRASWaterSurfaceGeneration">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/createWselRaster.svg</normaloff>../icons/createWselRaster.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Water Surface Generation</string>
+   </property>
+  </action>
+  <action name="actionRefreshConnections">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/refreshConnections.svg</normaloff>../icons/refreshConnections.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Refresh Connections List</string>
+   </property>
+  </action>
+  <action name="actionRASSave2DPointsToHECRASGeometry">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras2dareaSaveToGeo.svg</normaloff>../icons/ras2dareaSaveToGeo.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Save 2D Points to HEC-RAS Geometry</string>
+   </property>
+  </action>
+  <action name="actionRASPreview2DMesh">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras2dareaPreview.svg</normaloff>../icons/ras2dareaPreview.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Preview 2D Mesh</string>
+   </property>
+  </action>
+  <action name="actionRASCreateRdbTables">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/dbCreateRasTables.svg</normaloff>../icons/dbCreateRasTables.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Create River Database Tables</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Create River Database Tables</string>
+   </property>
+  </action>
+  <action name="actionRASManningsNValues">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsMannings.svg</normaloff>../icons/ras1dXsMannings.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Extract Manning's n Values</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Extract Manning's n Values</string>
+   </property>
+  </action>
+  <action name="actionRASCreateRASGISImport">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dCreateRASImport.svg</normaloff>../icons/ras1dCreateRASImport.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Create RAS GIS Import File</string>
+   </property>
+  </action>
+  <action name="actionRASTopology1D">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dStreamCenterlinesTopology.svg</normaloff>../icons/ras1dStreamCenterlinesTopology.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Topology</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Stream Centerlines Topology</string>
+   </property>
+  </action>
+  <action name="actionRASLengthsStations">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dStreamCenterlinesLengthsStations.svg</normaloff>../icons/ras1dStreamCenterlinesLengthsStations.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Lengths/Stations</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Stream Centerlines Lengths/Stations</string>
+   </property>
+  </action>
+  <action name="actionRASStreamCenterlineAll">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dStreamCenterlinesAll.svg</normaloff>../icons/ras1dStreamCenterlinesAll.svg</iconset>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Stream Centerlines All</string>
+   </property>
+  </action>
+  <action name="actionRASXSRiverReachNames">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsRiverNames.svg</normaloff>../icons/ras1dXsRiverNames.svg</iconset>
+   </property>
+   <property name="text">
+    <string>River/Reach Names</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Cross-sections River/Reach Names</string>
+   </property>
+  </action>
+  <action name="actionRASXSStationing">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsStationing.svg</normaloff>../icons/ras1dXsStationing.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Stationing</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Cross-sections Stationing</string>
+   </property>
+  </action>
+  <action name="actionRASXSBankStations">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsBanks.svg</normaloff>../icons/ras1dXsBanks.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Bank Stations</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Cross-sections Bank Stations</string>
+   </property>
+  </action>
+  <action name="actionRASXSDownstreamReachLengths">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsDSLengths.svg</normaloff>../icons/ras1dXsDSLengths.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Downstream Reach Lengths</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Cross-sections Downstream Reach Lengths</string>
+   </property>
+  </action>
+  <action name="actionRASXSElevations">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsElevations.svg</normaloff>../icons/ras1dXsElevations.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Elevations</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Cross-sections Elevations</string>
+   </property>
+  </action>
+  <action name="actionRASXSAll">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsAll.svg</normaloff>../icons/ras1dXsAll.svg</iconset>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Cross-sections All</string>
+   </property>
+  </action>
+  <action name="actionRASImportLayersIntoRdbTables">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/importLayersIntoRdb.svg</normaloff>../icons/importLayersIntoRdb.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Import Layers Into River Database Tables</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Import Layers Into River Database Tables</string>
+   </property>
+  </action>
+  <action name="actionRASLevees">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsLevees.svg</normaloff>../icons/ras1dXsLevees.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Levees</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Levees</string>
+   </property>
+  </action>
+  <action name="actionRASIneffectiveFlowAreas">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsIneffective.svg</normaloff>../icons/ras1dXsIneffective.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Ineffective Flow Areas</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Ineffective Flow Areas</string>
+   </property>
+  </action>
+  <action name="actionRASBlockedObstructions">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsBlockedObs.svg</normaloff>../icons/ras1dXsBlockedObs.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Blocked Obstructions</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Blocked Obstructions</string>
+   </property>
+  </action>
+  <action name="actionRASLoadRdbTablesIntoQGIS">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/loadRdbTablesIntoQgis.svg</normaloff>../icons/loadRdbTablesIntoQgis.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Load River Database Tables Into QGIS</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Load River Database Tables Into QGIS</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/options.svg</normaloff>../icons/options.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Options</string>
+   </property>
+  </action>
+  <action name="actionDebugMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Debug mode</string>
+   </property>
+  </action>
+  <action name="actionCopyStreamCenterlines2Flowpaths">
+   <property name="text">
+    <string>Copy Stream Centerlines to Flowpaths</string>
+   </property>
+  </action>
+  <action name="actionAlwaysOnTop">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Always on top</string>
+   </property>
+  </action>
+  <action name="actionRASXSUpdateInsertMeasuredPoints">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dXsUpdate.svg</normaloff>../icons/ras1dXsUpdate.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Update Elevations</string>
+   </property>
+  </action>
+  <action name="actionRASBRRiverReachNames">
+   <property name="text">
+    <string>River/Reach Names</string>
+   </property>
+   <property name="toolTip">
+    <string>Bridges/Culverts River Reach Names</string>
+   </property>
+  </action>
+  <action name="actionRASBRStationing">
+   <property name="text">
+    <string>Stationing</string>
+   </property>
+   <property name="toolTip">
+    <string>Bridges/Culverts Stationing</string>
+   </property>
+  </action>
+  <action name="actionRASBRElevations">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Elevations</string>
+   </property>
+   <property name="toolTip">
+    <string>Bridges/Culverts Elevations</string>
+   </property>
+  </action>
+  <action name="actionRASBRAll">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dBridges.svg</normaloff>../icons/ras1dBridges.svg</iconset>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Bridges/Culverts - All</string>
+   </property>
+  </action>
+  <action name="actionRASInlRiverReachNames">
+   <property name="text">
+    <string>River/Reach Names</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Inline Structures River/Reach Names</string>
+   </property>
+  </action>
+  <action name="actionRASInlStationing">
+   <property name="text">
+    <string>Stationing</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Inline Structures Stationing</string>
+   </property>
+  </action>
+  <action name="actionRASInlElevations">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Elevations</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Inline Structures Elevations</string>
+   </property>
+  </action>
+  <action name="actionRASInlAll">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dInlineStruct.svg</normaloff>../icons/ras1dInlineStruct.svg</iconset>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Inline Structures - All</string>
+   </property>
+  </action>
+  <action name="actionRASLatRiverReachNames">
+   <property name="text">
+    <string>River/Reach Names</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Lateral Structures River/Reach Names</string>
+   </property>
+  </action>
+  <action name="actionRASLatStationing">
+   <property name="text">
+    <string>Stationing</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Lateral Structures Stationing</string>
+   </property>
+  </action>
+  <action name="actionRASLatElevations">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Elevations</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Lateral Structures Elevations</string>
+   </property>
+  </action>
+  <action name="actionRASLatAll">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dLateralStruct.svg</normaloff>../icons/ras1dLateralStruct.svg</iconset>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Lateral Structures - All</string>
+   </property>
+  </action>
+  <action name="actionRASSAElevationVolumeData">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dSAElevVolume.svg</normaloff>../icons/ras1dSAElevVolume.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Elevation-Volume Data</string>
+   </property>
+   <property name="iconText">
+    <string>SA Elevation-Volume Data</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D SA Elevation-Volume Data</string>
+   </property>
+  </action>
+  <action name="actionRASSATerrainPointExtraction">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dSATerPtExtract.svg</normaloff>../icons/ras1dSATerPtExtract.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Terrain Point Extraction</string>
+   </property>
+   <property name="iconText">
+    <string>SA Terrain Point Extraction</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D SA Terrain Point Extraction</string>
+   </property>
+  </action>
+  <action name="actionRASSAAll">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dStorageAreas.svg</normaloff>../icons/ras1dStorageAreas.svg</iconset>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D Storage Areas - All</string>
+   </property>
+  </action>
+  <action name="actionRASSacAssignNearestSA">
+   <property name="text">
+    <string>Assign Nearest SA</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D SA Conn Assign Nearest SA</string>
+   </property>
+  </action>
+  <action name="actionRASSacElevations">
+   <property name="text">
+    <string>Elevations</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D SA Conn - Elevations</string>
+   </property>
+  </action>
+  <action name="actionRASSacAll">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/ras1dSAConnections.svg</normaloff>../icons/ras1dSAConnections.svg</iconset>
+   </property>
+   <property name="text">
+    <string>All</string>
+   </property>
+   <property name="toolTip">
+    <string>RAS 1D SA Connections - All</string>
+   </property>
+  </action>
+  <action name="actionWebsite">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/webSite.svg</normaloff>../icons/webSite.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Web site</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/rivergis.svg</normaloff>../icons/rivergis.svg</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionRestoreDefaultOptions">
+   <property name="text">
+    <string>Restore Default Options</string>
+   </property>
+  </action>
+  <action name="actionCreateNewSchema">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/dbCreateSchema.svg</normaloff>../icons/dbCreateSchema.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Create New Schema</string>
+   </property>
+  </action>
+  <action name="actionDeleteSchema">
+   <property name="icon">
+    <iconset>
+     <normaloff>../icons/dbDeleteSchema.svg</normaloff>../icons/dbDeleteSchema.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Delete Schema</string>
+   </property>
+  </action>
+  <action name="actionRASHealLanduseGeometries">
+   <property name="text">
+    <string>Heal Landuse Areas Geometries</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsProjectionSelectionWidget</class>
+   <extends>QWidget</extends>
+   <header>qgis.gui</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>textEdit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
