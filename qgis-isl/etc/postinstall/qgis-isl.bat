@@ -10,8 +10,9 @@ set APPNAME=QGIS ISL (LTR)
 @REM  backup native QGIS bat files and shortcuts
 
 move /Y "%OSGEO4W_ROOT%\bin\qgis-ltr.bat" "%OSGEO4W_ROOT%\bin\qgis-ltr-natif.bat"
-move /Y "%AppData%\Microsoft\Windows\Start Menu\Programs\QGIS3.lnk" "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links\"
-move /Y "%OSGEO4W_STARTMENU%\*" "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links\"
+mkdir "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links"
+move /Y "%AppData%\Microsoft\Windows\Start Menu\Programs\QGIS3.lnk" "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links"
+move /Y "%OSGEO4W_STARTMENU%\*" "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links"
 
 @REM  delete of backup link (may remain from previous install)
 del "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\%APPNAME%.lnk"
