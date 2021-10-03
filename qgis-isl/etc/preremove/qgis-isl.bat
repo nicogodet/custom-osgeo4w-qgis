@@ -5,14 +5,12 @@ echo "running .bat preremove qgis-isl "
 set O4W_ROOT=%OSGEO4W_ROOT%
 set OSGEO4W_ROOT=%OSGEO4W_ROOT:\=\\%
 
-@REM  deletes .bat et and custom shortcuts
 set APPNAME=QGIS ISL (LTR)
+
+@REM  deletes .bat et and custom shortcuts
 del "%OSGEO4W_ROOT%\bin\qgis-ltr-isl.bat"
 del "%OSGEO4W_STARTMENU%\%APPNAME%.lnk"
 del "%OSGEO4W_DESKTOP%\%APPNAME%.lnk"
-
-@REM del "%OSGEO4W_ROOT%\bin\qgis-ltr-custom-bin.vars"
-@REM del "%OSGEO4W_ROOT%\bin\qgis-ltr-custom-bin.env"
 
 @REM cleans python compiled files (should be adapted to Python3 cache)
 del /s /q "%OSGEO4W_ROOT%\apps\qgis-isl\python\*.pyc"
@@ -21,15 +19,11 @@ del /s /q "%OSGEO4W_ROOT%\apps\qgis-isl\python\*.pyc"
 del "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\%APPNAME%.lnk"
 
 @REM delete old reg key association
-
 del "%OSGEO4W_ROOT%\apps\qgis-isl\bin\qgis-isl-ltr.reg"
 
 @REM restore native shortcuts
-
 move /Y "%OSGEO4W_ROOT%\bin\qgis-ltr-natif.bat" "%OSGEO4W_ROOT%\bin\qgis-ltr.bat"
-
 move /Y "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\startmenu_links\*.lnk" "%OSGEO4W_STARTMENU%\"
-
 
 @REM  replays file associations for qgs / qgz with QGIS native
 

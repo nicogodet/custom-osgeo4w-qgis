@@ -17,11 +17,11 @@ SETUP_TEXT=$(cat setup.hint)
 # PACKAGE_DIR="/mnt/l/Qgis/DEPLOY/sources"
 PACKAGE_DIR="/mnt/p/DEPLOY/http%3a%2f%2fwww.norbit.de%2fosgeo4w%2fv2%2f"
 
-echo "-Target package directory : 
+echo "- Target package directory : 
 $PACKAGE_DIR
 "
 
-echo "-Package metadata : 
+echo "- Package metadata : 
 ------------
 $SETUP_TEXT
 ------------"
@@ -29,14 +29,14 @@ $SETUP_TEXT
 
 if [ ! -d "$PACKAGE_DIR" ] 
 then
-   echo "Target directory doesn't exists"
+   echo "Target directory doesn't exists!"
    exit 1
 fi
 
 
 VERSION=$(grep -i version setup.hint | awk '{printf $2}') 
 
-echo "package version found:  $VERSION"
+echo "Package version found: $VERSION"
 
 mkdir -p "$PACKAGE_DIR/x86_64/release/qgis/qgis-isl/"
 
@@ -70,8 +70,10 @@ echo -e "--------"
 
 echo -e "** Package deployed **"
 
-echo -e "--------"
+echo -e "--------\n"
 
+echo -e "- Copy osgeo4w-setup.exe and .bat install"
 sudo cp -p install/install_QGIS.bat $PACKAGE_DIR/../
 sudo cp -p install/osgeo4w-setup.exe $PACKAGE_DIR/../
+echo -e "Done"
 

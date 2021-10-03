@@ -34,4 +34,6 @@ set OSGEO4W_ROOT=%O4W_ROOT%
 REM Do not register extensions if release is installed
 if not exist "%OSGEO4W_ROOT%\apps\qgis-isl\bin\qgis-isl-ltr.reg" "%WINDIR%\regedit" /s "%OSGEO4W_ROOT%\apps\qgis-isl\bin\qgis-isl-ltr.reg"
 del /s /q "%OSGEO4W_ROOT%\apps\qgis-ltr\python\*.pyc"
+
+echo "End of qgis-isl.bat postinstall"
 exit /b 0
