@@ -30,6 +30,7 @@ if not %OSGEO4W_DESKTOP_LINKS%==0 xxmklink "%OSGEO4W_DESKTOP%\%APPNAME%.lnk" "%O
 
 textreplace -std -t "%OSGEO4W_ROOT%\apps\qgis-isl\bin\qgis-isl-ltr.reg"
 textreplace -std -t "%OSGEO4W_ROOT%\apps\qgis-isl\QGIS\QGISCUSTOMIZATION3.ini"
+textreplace -std -t "%OSGEO4W_ROOT%\apps\qgis-isl\qgis_global_settings.ini"
 set OSGEO4W_ROOT=%O4W_ROOT%
 
 REM Do not register extensions if release is installed
