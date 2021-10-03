@@ -29,6 +29,7 @@ if not %OSGEO4W_MENU_LINKS%==0 xxmklink "%OSGEO4W_STARTMENU%\%APPNAME%.lnk" "%OS
 if not %OSGEO4W_DESKTOP_LINKS%==0 xxmklink "%OSGEO4W_DESKTOP%\%APPNAME%.lnk" "%OSGEO4W_ROOT%\bin\qgis-ltr-isl.bat" "" "%DOCUMENTS%" "" 1 "%OSGEO4W_ROOT%\apps\qgis-ltr\icons\qgis.ico"
 
 textreplace -std -t "%OSGEO4W_ROOT%\apps\qgis-isl\bin\qgis-isl-ltr.reg"
+textreplace -std -t "%OSGEO4W_ROOT%\apps\qgis-isl\QGIS\QGISCUSTOMIZATION3.ini"
 set OSGEO4W_ROOT=%O4W_ROOT%
 
 REM Do not register extensions if release is installed
