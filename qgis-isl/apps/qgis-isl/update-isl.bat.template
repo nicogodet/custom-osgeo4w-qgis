@@ -1,0 +1,2 @@
+@copy "C:\OSGeo4W\bin\osgeo4w-setup.exe" "C:\OSGeo4W\bin\osgeo4w-setup-work.exe"
+@start /B "Running Setup" "C:\OSGeo4W\bin\osgeo4w-setup-work.exe" --root "@osgeo4w@" --quiet-mode --local-install --local-package-dir "\\192.168.1.20\PiPartage\DEPLOY" --autoaccept  --delete-orphans --upgrade-also -C Libs -C Desktop -C Commandline_Utilities

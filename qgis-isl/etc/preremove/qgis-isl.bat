@@ -9,7 +9,9 @@ set APPNAME=QGIS ISL (LTR)
 
 @REM  deletes .bat et and custom shortcuts
 del "%OSGEO4W_ROOT%\bin\qgis-ltr-isl.bat"
+del "%OSGEO4W_ROOT%\bin\update-isl.bat"
 del "%OSGEO4W_STARTMENU%\%APPNAME%.lnk"
+del "%OSGEO4W_STARTMENU%\Mise a jour %APPNAME%.lnk"
 del "%OSGEO4W_DESKTOP%\%APPNAME%.lnk"
 
 @REM cleans python compiled files (should be adapted to Python3 cache)
@@ -17,6 +19,7 @@ del /s /q "%OSGEO4W_ROOT%\apps\qgis-isl\python\*.pyc"
 
 @REM deletes custom shortcut backup (may remain)
 del "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\%APPNAME%.lnk"
+del "%OSGEO4W_ROOT%\apps\qgis-isl\qgis-ltr-backup\Mise a jour %APPNAME%.lnk"
 
 @REM delete old reg key association
 del "%OSGEO4W_ROOT%\apps\qgis-isl\bin\qgis-isl-ltr.reg"
