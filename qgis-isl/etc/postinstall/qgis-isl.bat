@@ -7,6 +7,7 @@ set OSGEO4W_ROOT=%OSGEO4W_ROOT:\=\\%
 
 set APPNAME=QGIS ISL (LTR)
 for %%i in ("%OSGEO4W_STARTMENU%") do set QGIS_WIN_APP_NAME=%%~ni\%APPNAME%
+call "%OSGEO4W_ROOT%\bin\qgis-ltr.bat" --postinstall
 
 @REM  backup native QGIS bat files and shortcuts
 
