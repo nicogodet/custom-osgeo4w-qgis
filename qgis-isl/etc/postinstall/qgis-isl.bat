@@ -4,6 +4,7 @@ echo "Starting postinstall qgis-isl.bat"
 
 set APPNAME=QGIS ISL (LTR)
 for %%i in ("%OSGEO4W_STARTMENU%") do set QGIS_WIN_APP_NAME=%%~ni\%APPNAME%
+textreplace -std -t "%OSGEO4W_ROOT%\bin\qgis-ltr.bat" -map "set VSI_CACHE=TRUE" "set VSI_CACHE=FALSE"
 call "%OSGEO4W_ROOT%\bin\qgis-ltr.bat" --postinstall
 
 set O4W_ROOT=%OSGEO4W_ROOT%
