@@ -52,7 +52,6 @@ size=$(stat -c "%s" qgis-isl-$VERSION.tar.bz2)
 
 echo -e "- Modification of setup.ini"
 
-rm -f setup.ini
 cp -p $PACKAGE_DIR/x86_64/setup.ini setup.ini
 chmod +w setup.ini
 
@@ -65,6 +64,7 @@ $SETUP_TEXT $size $MD5
 " >>  setup.ini 
 
 sudo cp -fp setup.ini $PACKAGE_DIR/x86_64/setup.ini
+rm -f setup.ini
 
 echo -e "--------"
 

@@ -3,5 +3,5 @@ ldesc: "QGIS LTR ISL configuration package"
 maintainer: NGO
 category: Desktop
 requires: qgis-ltr-full
-version: 0.3-15
+version: 0.4-1
 install: x86_64/release/qgis/qgis-isl/qgis-isl-0.3-15.tar.bz2
