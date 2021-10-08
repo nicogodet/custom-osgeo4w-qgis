@@ -2,6 +2,10 @@
 @echo on
 echo "Starting postinstall qgis-isl.bat"
 
+if not defined OSGEO4W_DESKTOP for /F "tokens=* USEBACKQ" %%F IN (`getspecialfolder Desktop`) do set OSGEO4W_DESKTOP=%%F
+@REM Temp overwrite OSGEO4W_DESKTOP_LINKS (https://trac.osgeo.org/osgeo4w/ticket/693)
+set OSGEO4W_DESKTOP_LINKS=1
+
 set APPNAME=QGIS ISL (LTR)
 for %%i in ("%OSGEO4W_STARTMENU%") do set QGIS_WIN_APP_NAME=%%~ni\%APPNAME%
 textreplace -std -t "%OSGEO4W_ROOT%\bin\qgis-ltr.bat" -map "set VSI_CACHE=TRUE" "set VSI_CACHE=FALSE"
