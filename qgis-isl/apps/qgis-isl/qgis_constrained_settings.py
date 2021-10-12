@@ -2,13 +2,14 @@
 # config file :   qgis_constrained_settings.yml
 # cf  https://gitlab.com/Oslandia/qgis/qgis-constrained-settings
 
-import yaml
 import codecs
-import pathlib
 import collections
 import configparser
+import pathlib
+
 import PyQt5.QtCore
 import qgis.core
+import yaml
 
 
 def main():
