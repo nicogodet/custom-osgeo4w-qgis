@@ -25,7 +25,7 @@ REM point a location for pg_service.conf
 REM set PGSERVICEFILE=\\some-server\sit$\QGIS\isl\.pg_service.conf
 
 REM centralized plugins on a server if needed
-REM set QGIS_PLUGINPATH=\\islsudouest\users\Godet\Qgis\PLUGINS
+set QGIS_PLUGINPATH=\\islsudouest\users\Godet\Qgis\PLUGINS
 
 REM location for default settings (if provided by this package)
 set QGIS_GLOBAL_SETTINGS_FILE=%OSGEO4W_ROOT%\apps\qgis-isl\qgis_global_settings.ini
