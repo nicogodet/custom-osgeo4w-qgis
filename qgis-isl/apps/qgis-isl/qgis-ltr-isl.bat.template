@@ -17,7 +17,7 @@ set QT_PLUGIN_PATH=%OSGEO4W_ROOT%\apps\qgis-ltr\qtplugins;%OSGEO4W_ROOT%\apps\qt
 
 rem config custom
 
-REM  this "@@" pattern wil be replaced by make.sh with actual version 
+REM This "@@" pattern wil be replaced by make.sh with actual version 
 
 set QGIS-CUSTOM-VERSION=@@
 
@@ -25,7 +25,7 @@ REM point a location for pg_service.conf
 REM set PGSERVICEFILE=\\some-server\sit$\QGIS\isl\.pg_service.conf
 
 REM centralized plugins on a server if needed
-REM set QGIS_PLUGINPATH=\\some-server\sit$\QGIS\isl\python\plugins
+REM set QGIS_PLUGINPATH=\\islsudouest\users\Godet\Qgis\PLUGINS
 
 REM location for default settings (if provided by this package)
 set QGIS_GLOBAL_SETTINGS_FILE=%OSGEO4W_ROOT%\apps\qgis-isl\qgis_global_settings.ini
