@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/plugins/PointProjection" >
-        <file>icons/icon.png</file>
-        <file>icons/action_refresh.png</file>
-    </qresource>
-</RCC>

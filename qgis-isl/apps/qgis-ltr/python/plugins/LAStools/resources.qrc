@@ -1,5 +1,0 @@
-<RCC>
-  <qresource prefix="plugins/LAStools/" >
-    <file>LAStools.png</file>
-  </qresource>
-</RCC>

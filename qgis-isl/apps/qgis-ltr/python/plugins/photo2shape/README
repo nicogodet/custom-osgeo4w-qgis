@@ -1,5 +1,0 @@
-Photo2Shape
------------
-Create point shapefile from a set of geotagged photos.
-
-Optionally needs exifread ≥ 2.0.1
