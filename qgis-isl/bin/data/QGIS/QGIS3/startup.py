@@ -2,25 +2,101 @@
 # config file :   qgis_constrained_settings.yml
 # cf  https://gitlab.com/Oslandia/qgis/qgis-constrained-settings
 
-import yaml
 import codecs
-import pathlib
 import collections
 import configparser
-import PyQt5.QtCore
-import qgis.core
+import os
+import shutil
+from configparser import ConfigParser
+from pathlib import Path
+
+import yaml
+from PyQt5.QtCore import QSettings
+from qgis.core import QgsApplication, QgsSettings
+from qgis.utils import loadPlugin, reloadPlugin, startPlugin, unloadPlugin
+
+from .version_compare import compareVersions
+
+PLUGINS_PATH = ""
+
+
+def plugin_metadata_as_dict(path) -> dict:
+    """Read plugin metadata.txt and returns it as a Python dict.
+
+    Raises:
+        IOError: if metadata.txt is not found
+
+    Returns:
+        dict: dict of dicts.
+    """
+    config = ConfigParser()
+    if path.is_file():
+        config.read(path.resolve(), encoding="UTF-8")
+        return {s: dict(config.items(s)) for s in config.sections()}
+    raise IOError(f"Plugin metadata.txt not found at: {path}")
+
+
+def listPlugins(path):
+    return [f.name for f in os.scandir(path) if f.is_dir()]
+
+
+def copyPlugin(src, dst, symlinks=False, ignore=None):
+    s = os.path.join(src, item)
+    d = os.path.join(dst, item)
+    if os.path.isdir(s):
+        shutil.copytree(s, d, symlinks, ignore)
+    else:
+        shutil.copy2(s, d)
+
+
+def getPluginVersion(path):
+    plugin_md = plugin_metadata_as_dict(path)
+    return plugin_md.get("general").get("version")
+
+
+def updatePlugins():
+    userPluginsDir = Path(QgsApplication.qgisSettingsDirPath()) / "python/plugins"
+    userPlugins = listPlugins(Path(QgsApplication.qgisSettingsDirPath() / "python/plugins"))
+    refPlugins = listPlugins(Path(PLUGINS_PATH))
+
+    for plugin in refPlugins:
+        path_ref_plugin = Path(PLUGINS_PATH) / plugin
+        path_user_plugin = userPluginsDir / plugin
+        ref_plugin_md = plugin_metadata_as_dict(path_ref_plugin)
+        user_plugin_md = plugin_metadata_as_dict(path_user_plugin)
+
+        isNewPlugin = True
+        doNothing = False
+
+        if plugin in userPlugins:
+            compare = compareVersions(
+                ref_plugin_md.get("general").get("version"), user_plugin_md.get("general").get("version")
+            )
+            if compare == 1:
+                shutil.rmtree(path_user_plugin, ignore_errors=True)
+                isNewPlugin = False
+            else:
+                doNothing = True
+
+        if doNothing:
+            continue
+
+        copyPlugin(path_ref_plugin, path_user_plugin)
+
+        settings = QgsSettings()
+        if isNewPlugin:
+            if startPlugin(plugin):
+                settings.setValue("/PythonPlugins/" + plugin, True)
+        else:
+            if settings.value("/PythonPlugins/" + plugin, False, type=bool):
+                reloadPlugin(plugin)
+            else:
+                unloadPlugin(plugin)
+                loadPlugin(plugin)
 
 
 def main():
-    application = qgis.core.QgsApplication.instance()
-    applicationSettings = qgis.core.QgsSettings(
-        application.organizationName(), application.applicationName()
-    )
-    globalSettingsPath = pathlib.Path(applicationSettings.globalSettingsPath())
-    globalSettingsDirPath = globalSettingsPath.parent
-    qgisConstrainedSettingsPath = (
-        globalSettingsDirPath / "qgis_constrained_settings.yml"
-    )
+    qgisConstrainedSettingsPath = Path(__file__).parent / "qgis_constrained_settings.yml"
 
     if not qgisConstrainedSettingsPath.is_file():
         print("No file named {}".format(qgisConstrainedSettingsPath))
@@ -30,7 +106,7 @@ def main():
     with open(str(qgisConstrainedSettingsPath)) as f:
         constrainedSettings = yaml.safe_load(f)
 
-    userSettings = PyQt5.QtCore.QSettings()
+    userSettings = QSettings()
     print("Process {}".format(userSettings.fileName()))
 
     propertiesToRemove = constrainedSettings.get("propertiesToRemove", {})
@@ -44,7 +120,7 @@ def main():
                 userSettings.remove(prop)
         userSettings.endGroup()
 
-    globalSettings = configparser.ConfigParser()
+    globalSettings = ConfigParser()
     with open(str(globalSettingsPath)) as f:
         globalSettings.read_file(f)
 
@@ -73,9 +149,7 @@ def main():
             )
             userPropertyValues = globalPropertyValues + userPropertyValues
             # remove duplicates
-            userPropertyValues = list(
-                collections.OrderedDict.fromkeys(userPropertyValues)
-            )
+            userPropertyValues = list(collections.OrderedDict.fromkeys(userPropertyValues))
             userSettings.setValue(prop, userPropertyValues)
         userSettings.endGroup()
 
@@ -87,12 +161,10 @@ def main():
             if not userPropertyValues:
                 continue
             valuesToRemove = list(map(lambda v: v.rstrip("/\\ "), properties[prop]))
-            userPropertyValues = [
-                v for v in userPropertyValues if v.rstrip("/\\ ") not in valuesToRemove
-            ]
+            userPropertyValues = [v for v in userPropertyValues if v.rstrip("/\\ ") not in valuesToRemove]
             userSettings.setValue(prop, userPropertyValues)
         userSettings.endGroup()
 
 
-if __name__ == "__main__":
+if __name__ == "startup":
     main()
