@@ -209,7 +209,7 @@ def getPluginVersion(path):
 
 
 def updatePlugins():
-    if not PLUGINS_PATH.exists()
+    if not PLUGINS_PATH.exists():
         return
 
     userPluginsDir = Path(QgsApplication.qgisSettingsDirPath()) / "python/plugins"
