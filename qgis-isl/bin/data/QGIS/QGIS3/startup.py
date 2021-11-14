@@ -14,7 +14,7 @@ import yaml
 from PyQt5.QtCore import QSettings
 from qgis.core import Qgis, QgsApplication, QgsSettings
 
-PLUGINS_PATH = Path("C:/Users/Nicolas Godet/AppData/Roaming/QGIS/QGIS3/profiles/default/python/plugins")
+PLUGINS_PATH = Path("to_be_defined")
 
 
 def plugin_metadata_as_dict(path) -> dict:
@@ -209,6 +209,9 @@ def getPluginVersion(path):
 
 
 def updatePlugins():
+    if not PLUGINS_PATH.exists()
+        return
+
     userPluginsDir = Path(QgsApplication.qgisSettingsDirPath()) / "python/plugins"
     userPlugins = listPlugins(userPluginsDir)
     refPlugins = listPlugins(PLUGINS_PATH)
@@ -220,7 +223,6 @@ def updatePlugins():
         path_user_plugin = userPluginsDir / plugin
 
         isNewPlugin = True
-        doNothing = False
 
         if plugin in userPlugins:
             ref_plugin_md = plugin_metadata_as_dict(path_ref_plugin / "metadata.txt")
@@ -232,10 +234,7 @@ def updatePlugins():
                 shutil.rmtree(path_user_plugin, ignore_errors=True)
                 isNewPlugin = False
             else:
-                doNothing = True
-
-        if doNothing:
-            continue
+                continue
 
         copyPlugin(path_ref_plugin, path_user_plugin)
 

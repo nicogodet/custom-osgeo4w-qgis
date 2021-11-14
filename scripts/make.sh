@@ -6,6 +6,8 @@ set -e
 
 cd qgis-isl
 
+REF_PLUGINS_PATH="$1"
+
 # get version 
 VERSION=$(grep -i version setup.hint | awk '{printf $2}')
 
@@ -15,8 +17,12 @@ sed -i "/install: x86_64/s/.*/install: x86_64\/release\/qgis\/qgis-isl\/qgis-isl
 # pushes version as a environment variable. Helps to diagnose which package version is installed quickly from QGIS settings
 sed -i "s/QGIS-CUSTOM-VERSION=.*/QGIS-CUSTOM-VERSION=$VERSION/" apps/qgis-isl/qgis-ltr-isl.bat.template
 
+# set plugin ref path 
+sed -i "s@PLUGINS_PATH =.*@PLUGINS_PATH = Path(\"$REF_PLUGINS_PATH\")@" bin/data/QGIS/QGIS3/startup.py
+
 # compression
 tar cvjSf ../qgis-isl-$VERSION.tar.bz2 .
 
-# restores @@ marker  
+# restores @@ markers
 sed -i "s/QGIS-CUSTOM-VERSION=.*/QGIS-CUSTOM-VERSION=@@/" apps/qgis-isl/qgis-ltr-isl.bat.template
+sed -i "s/PLUGINS_PATH =.*/PLUGINS_PATH = Path(\"to_be_defined\")/" bin/data/QGIS/QGIS3/startup.py
