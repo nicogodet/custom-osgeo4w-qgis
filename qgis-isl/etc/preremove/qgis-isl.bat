@@ -8,6 +8,8 @@ set OSGEO4W_ROOT=%OSGEO4W_ROOT:\=\\%
 set APPNAME=QGIS ISL (LTR)
 
 @REM  deletes .bat et and custom shortcuts
+del "%OSGEO4W_ROOT%\bin\data\QGIS\QGIS3\qgis_constrained_settings.yml"
+del "%OSGEO4W_ROOT%\bin\data\QGIS\QGIS3\startup.py"
 del "%OSGEO4W_ROOT%\bin\qgis-ltr-isl.bat"
 del "%OSGEO4W_ROOT%\bin\update-isl.bat"
 del "%OSGEO4W_STARTMENU%\%APPNAME%.lnk"

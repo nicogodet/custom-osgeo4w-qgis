@@ -213,6 +213,8 @@ def updatePlugins():
         return
 
     userPluginsDir = Path(QgsApplication.qgisSettingsDirPath()) / "python/plugins"
+    if not userPluginsDir.exists():  #fresh new profile
+        userPluginsDir.mkdir(parents=True, exist_ok=False)
     userPlugins = listPlugins(userPluginsDir)
     refPlugins = listPlugins(PLUGINS_PATH)
 

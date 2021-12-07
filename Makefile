@@ -1,6 +1,8 @@
 #
-PACKAGE_DIR = "/mnt/l/Qgis/DEPLOY/depot"
-REF_PLUGINS_PATH = "/mnt/l/Qgis/PLUGINS"
+PACKAGE_DIR = "/mnt/l/Qgis/DEPLOY/http%3a%2f%2fdownload.osgeo.org%2fosgeo4w%2fv2%2f"
+REF_PLUGINS_PATH = "//islsudouest/users/Godet/Qgis/DEPLOY/Plugins"
+PLUGINS_PATH = "/mnt/l/Qgis/DEPLOY/Plugins"
+
 
 create:
 	@echo
@@ -21,5 +23,5 @@ pclean:
 	@echo "-----------------------------------"
 	@echo "Clean plugin directory."
 	@echo "-----------------------------------"
-	find $(REF_PLUGINS_PATH)/ -iname "__pycache__" -prune -exec rm -Rf {} \;
-	find $(REF_PLUGINS_PATH)/ -iname ".git" -prune -exec rm -Rf {} \;
+	find $(PLUGINS_PATH)/ -iname "__pycache__" -prune -exec rm -Rf {} \;
+	find $(PLUGINS_PATH)/ -iname ".git" -prune -exec rm -Rf {} \;
